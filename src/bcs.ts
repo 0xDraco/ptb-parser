@@ -1,11 +1,6 @@
 import { bcs, fromHEX, toHEX } from "@mysten/bcs";
 import { normalizeSuiAddress } from "@mysten/sui.js/utils";
 
-bcs.struct("TransactionBlock", {
-    inputs: bcs.vector(bcs.u8()),
-    transactions: bcs.vector(bcs.u8()),
-});
-
 export const moveCallDataStruct = bcs.struct("MoveCallData", {
     kind: bcs.u64(),
     packageId: bcs.string(),
@@ -23,8 +18,8 @@ export const splitCoinsDataStruct = bcs.struct("SplitCoinsData", {
 
 export const mergeCoinsDataStruct = bcs.struct("MergeCoinsData", {
     kind: bcs.u64(),
-    primary: bcs.vector(bcs.u8()),
-    coins: bcs.vector(bcs.vector(bcs.u8())),
+    destination: bcs.vector(bcs.u8()),
+    sources: bcs.vector(bcs.vector(bcs.u8())),
 });
 
 export const transferObjectsDataStruct = bcs.struct("TransferObjectsData", {

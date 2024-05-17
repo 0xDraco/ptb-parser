@@ -79,16 +79,16 @@ export class CommandSerializer {
     }
 
     private _serializeMergeCoins(command: MergeCoinsCommand) {
-        const primary = new ArgumentSerializer().serialize(command.primary);
-        const coins = command.coins.map((arg) =>
+        const destination = new ArgumentSerializer().serialize(command.destination);
+        const sources = command.sources.map((arg) =>
             new ArgumentSerializer().serialize(arg),
         );
 
         return mergeCoinsDataStruct
             .serialize({
                 kind: command.kind,
-                primary,
-                coins,
+                destination,
+                sources,
             })
             .toBytes();
     }
@@ -216,10 +216,10 @@ export class CommandSerializer {
 
         return {
             kind: CommandKind.MergeCoins,
-            primary: new ArgumentSerializer().deserialize(
-                Uint8Array.from(output.primary),
+            destination: new ArgumentSerializer().deserialize(
+                Uint8Array.from(output.destination),
             ),
-            coins: output.coins.map((arg) =>
+            sources: output.sources.map((arg) =>
                 new ArgumentSerializer().deserialize(Uint8Array.from(arg)),
             ),
         } as MergeCoinsCommand;

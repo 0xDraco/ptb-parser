@@ -78,8 +78,8 @@ export interface SplitCoinsCommand {
 }
 
 export interface MergeCoinsCommand {
-    primary: Argument;
-    coins: Argument[];
+    destination: Argument;
+    sources: Argument[];
     kind: CommandKind.MergeCoins;
 }
 
