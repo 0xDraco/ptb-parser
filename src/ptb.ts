@@ -99,7 +99,7 @@ export class ProgrammableTransactionBlock {
                     this._withUpgrade(command);
                     break;
                 case CommandKind.MakeMoveVec:
-                    this._makeMoveVec(command);
+                    this._withMakeMoveVec(command);
                     break;
                 default:
                     throw new Error("Command kind is not valid");
