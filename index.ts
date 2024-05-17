@@ -1,9 +1,9 @@
 import { SuiClient } from "@mysten/sui.js/client"
 import { Ed25519Keypair } from '@mysten/sui.js/keypairs/ed25519';
 import { TransactionBlock, TransactionResult } from '@mysten/sui.js/transactions';
-import { Address, bcs } from "./txb/bcs";
-import { ArgumentKind, CommandKind, CommandType, Input, InputType } from "./txb/types";
-import { CommandBuilder } from "./txb/builder/command";
+import { Address, bcs } from "./src/bcs";
+import { ArgumentKind, CommandKind, Command, Input, InputType } from "./src/types";
+import { CommandBuilder } from "./src/builder/command";
 
 const client = new SuiClient({ url: 'http://localhost:9000' })
 const secretKey = Buffer.from("q4Tq3ELy669bd2egaAhHwJjLLDwcfcWb4G+z1khwqvE=", "base64")
@@ -33,7 +33,7 @@ interface CreateSafePTxParams {
     safe: string,
     isDraft: boolean,
     type: SafeTransaction.ProgrammableTransaction,
-    operations: CommandType[]
+    operations: Command[]
 }
 
 enum SafeTransaction {
@@ -293,7 +293,7 @@ async function main() {
     // const txResponse = await createSafeConfigTransaction(safeTransactionParams)
     // console.log(txResponse)
 
-    // const txs: CommandType[] = [
+    // const txs: Command[] = [
     //     {
     //         kind: CommandKind.MoveCall,
     //         packageId: dummyPkg,
@@ -342,7 +342,7 @@ async function main() {
     // console.log(txResponse)
 }
 
-function cmdToTxb(txb: TransactionBlock, inputs: Input[], commands: CommandType[]) {
+function cmdToTxb(txb: TransactionBlock, inputs: Input[], commands: Command[]) {
     const transactions: TransactionResult[] = [];
 
     for (const command of commands) {

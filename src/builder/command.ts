@@ -1,7 +1,7 @@
 import {
     ArgumentKind,
     CommandKind,
-    CommandType,
+    Command,
     Input,
     InputRef,
     MakeMoveVecCommand,
@@ -17,9 +17,9 @@ import { InputSerializer } from "../serializer/input";
 
 export class CommandBuilder {
     private _inputs: Input[] = [];
-    private _commands: CommandType[] = [];
+    private _commands: Command[] = [];
 
-    constructor(commands?: CommandType[]) {
+    constructor(commands?: Command[]) {
         if (commands) {
             for (const command of commands) {
                 this.add(command);
@@ -27,7 +27,7 @@ export class CommandBuilder {
         }
     }
 
-    add(command: CommandType) {
+    add(command: Command) {
         switch (command.kind) {
             case CommandKind.MoveCall:
                 this._addMoveCall(command);
@@ -128,7 +128,7 @@ export class CommandBuilder {
         this._commands.push(command);
     }
 
-    public get commands(): CommandType[] {
+    public get commands(): Command[] {
         return this._commands;
     }
 

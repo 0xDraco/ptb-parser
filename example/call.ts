@@ -1,10 +1,10 @@
 import { TransactionBlock, TransactionResult } from "@mysten/sui.js/transactions";
-import { CommandBuilder } from "../txb/builder/command";
-import { Argument, ArgumentKind, CommandKind, CommandType, InputType, ValueType, VariableArgument } from "../txb/types";
+import { CommandBuilder } from "../src/builder/command";
+import { Argument, ArgumentKind, CommandKind, Command, InputType, ValueType, VariableArgument } from "../src/types";
 
 
 
-const transaction: CommandType[] = [
+const transaction: Command[] = [
     {
         kind: CommandKind.MoveCall,
         packageId: "0x0",

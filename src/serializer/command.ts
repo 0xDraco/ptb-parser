@@ -1,6 +1,6 @@
 import {
     CommandKind,
-    CommandType,
+    Command,
     MakeMoveVecCommand,
     MergeCoinsCommand,
     MoveCallCommand,
@@ -10,7 +10,6 @@ import {
     UpgradeCommand,
 } from "../types";
 import {
-    Address,
     bcs,
     makeMoveVecStruct,
     mergeCoinsDataStruct,
@@ -23,7 +22,7 @@ import {
 import { ArgumentSerializer } from "./argument";
 
 export class CommandSerializer {
-    public serialize(command: CommandType) {
+    public serialize(command: Command) {
         switch (command.kind) {
             case CommandKind.MoveCall:
                 return this._serializeMoveCall(command);

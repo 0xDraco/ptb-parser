@@ -109,7 +109,7 @@ export interface MakeMoveVecCommand {
     type?: string;
 }
 
-export type CommandType =
+export type Command =
     | MoveCallCommand
     | SplitCoinsCommand
     | MergeCoinsCommand
@@ -120,5 +120,5 @@ export type CommandType =
 
 export interface TransactionSpec {
     inputs: Input[],
-    commands: CommandType[]
+    commands: Command[]
 }
